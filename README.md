@@ -1,6 +1,7 @@
 # Aircall
 
 A Ruby gem for [Aircall](https://developer.aircall.io/api-references/).
+Only some methods are presents for the moment.
 
 ## Installation
 
@@ -23,7 +24,7 @@ Or install it yourself as:
 
 ### Init
 
-Create new Aircall like this:
+Create new Aircall connection like this:
 
     aircall = Aircall.new({id: [AIRCALL_ID], token: [AIRCALL_TOKEN]})
 
