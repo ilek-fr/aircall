@@ -34,10 +34,10 @@ Gem::Specification.new do |spec|
 
 
   spec.add_runtime_dependency "httparty", "~> 0.16.2"
-  spec.add_runtime_dependency "dotenv", "~> 2.2.2"
 
-  spec.add_development_dependency "minitest", "~> 5.11.3"
-  spec.add_development_dependency "hashie", "~> 3.5.7"
+  spec.add_development_dependency "minitest", "~> 5.11"
+  spec.add_development_dependency "hashie", "~> 3.5"
+  spec.add_development_dependency "dotenv", "~> 2.2"
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
 end

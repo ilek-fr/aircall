@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     aircall (0.1.0)
-      dotenv (~> 2.2.2)
       httparty (~> 0.16.2)
 
 GEM
@@ -22,8 +21,9 @@ PLATFORMS
 DEPENDENCIES
   aircall!
   bundler (~> 1.16)
-  hashie (~> 3.5.7)
-  minitest (~> 5.11.3)
+  dotenv (~> 2.2)
+  hashie (~> 3.5)
+  minitest (~> 5.11)
   rake (~> 10.0)
 
 BUNDLED WITH

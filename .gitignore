@@ -2,10 +2,10 @@
 /.yardoc
 /_yardoc/
 /coverage/
-/doc/
 /pkg/
 /spec/reports/
 /tmp/
 .idea/
 bin/temporary_tests
 .env
+*.gem
