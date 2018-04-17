@@ -4,21 +4,33 @@ require 'default_aircall'
 require 'default_tests'
 
 module TestAircall
-  describe Aircall::Users do
-    describe "By id" do
-
-      before do
-        @number_by_id = DefaultAircall::AIRCALL.users.get_by_id(80603)
-      end
-
-      it "est un Hash" do
-        @number_by_id.must_be_instance_of Hash
-      end
-
-      it "ne renvoi pas d'erreurs" do
-        @number_by_id['error'].must_be_nil
-      end
-
+  describe Aircall::Calls do
+    def self.call_by_id
+      @call_by_id ||= DefaultAircall::AIRCALL.calls.get_by_id(ENV['TEST_DEFAULT_CALL_ID'])
     end
+
+    def self.call_by_user_id
+      @call_by_user_id ||= DefaultAircall::AIRCALL.calls.get_by_user_id(ENV['TEST_DEFAULT_USER_ID'])
+    end
+
+    def self.call_by_phone_number
+      @call_by_phone_number ||= DefaultAircall::AIRCALL.calls.get_by_phone_number(ENV['TEST_DEFAULT_PHONE_NUMBER'])
+    end
+
+    DefaultTest::Run.(
+        'call_by_id',
+        'call_by_user_id',
+        'call_by_phone_number')
+
+    DefaultTest::Params_checker.(
+        'calls',
+        {
+            function: 'get_by_user_id',
+            argument: ENV['TEST_DEFAULT_USER_ID']
+        },
+        {
+            function: 'get_by_phone_number',
+            argument: ENV['TEST_DEFAULT_PHONE_NUMBER']
+        })
   end
 end

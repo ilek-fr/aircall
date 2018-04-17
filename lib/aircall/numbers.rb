@@ -1,9 +1,9 @@
 module Aircall
-  class Users
+  class Numbers
     include Connection
 
-    def get_by_id(call_id)
-      get("/users/#{call_id}")
+    def get_by_id(number_id)
+      get("/numbers/#{number_id}")
     end
 
   end

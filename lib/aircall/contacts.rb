@@ -1,25 +1,18 @@
 module Aircall
-  class Calls
+  class Contacts
     include Connection
 
-    def all
-      get('/calls')
+    def get_by_id(contact_id)
+      get("/contacts/#{contact_id}")
     end
 
-    def search
-      get('/calls/search')
+    def get_by_email(email, page: 1, per_page: 5, order: "asc", order_by: "created_at")
+      get(construct_request_with_arguments("/contacts/search", binding))
     end
 
-    def get_by_id(call_id)
-      get("/calls/#{call_id}")
+    def get_by_phone_number(phone_number, page: 1, per_page: 5, order: "asc", order_by: "created_at")
+      get(construct_request_with_arguments("/contacts/search", binding))
     end
 
-=begin
-    def get_by_from(from)
-      get("/calls/search?order_by=#{from}")
-    end
-=end
-
-    
   end
 end

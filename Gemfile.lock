@@ -1,0 +1,30 @@
+PATH
+  remote: .
+  specs:
+    aircall (0.1.0)
+      dotenv (~> 2.2.2)
+      httparty (~> 0.16.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.2.2)
+    hashie (3.5.7)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
+    minitest (5.11.3)
+    multi_xml (0.6.0)
+    rake (10.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  aircall!
+  bundler (~> 1.16)
+  hashie (~> 3.5.7)
+  minitest (~> 5.11.3)
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.16.0

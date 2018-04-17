@@ -1,52 +1,57 @@
-module Trakt
+require 'HTTParty'
+require 'json'
+
+module Aircall
   module Connection
-    attr_reader :trakt
-    def initialize(trakt)
-      @trakt = trakt
+    attr_reader :aircall
+    def initialize(aircall)
+      @aircall = aircall
     end
-    def connection
-      @connection ||= Excon.new("http://api.trakt.tv");
-    end
+
     def require_settings(required)
       required.each do |setting|
-        raise "Required setting #{setting} is missing." unless trakt.send(setting)
+        raise "Required setting #{setting} is missing." unless aircall.send(setting)
       end
     end
-    def post(path,body={})
-      # all posts have username/password
-      body.merge!({
-          'username' => trakt.username,
-          'password' => trakt.password,
-      })
-      path << '/' unless path[-1] == '/'
-      result = connection.post(:path => path + trakt.apikey, :body => body.to_json)
-      parse(result)
-    end
+
     def parse(result)
       parsed =  JSON.parse result.body
       if parsed.kind_of? Hash and parsed['status'] and parsed['status'] == 'failure'
         raise Error.new(parsed['error'])
       end
-      return parsed
+      
+      parsed
     end
-    def clean_query(query)
-      query.gsub(/[()]/,'').
-        gsub(' ','+').
-        gsub('&','and').
-        gsub('!','').
-        chomp
+
+    def get(path)
+      url = "https://api.aircall.io/v1#{path}"
+      response = HTTParty.get(
+          url,
+          basic_auth: { username: aircall.id, password: aircall.token }
+      )
+      
+      parse(response)
     end
-    def get(path,query)
-      full_path = File.join(path,trakt.apikey, query);
-      full_path.gsub!(%r{/*$},'')
-      result = connection.get(:path => full_path)
-      parse(result)
+
+    def get_method_arguments(ext_binding)
+      raise ArgumentError, "Binding expected, #{ext_binding.class.name} given" unless ext_binding.is_a?(Binding)
+      method_name = ext_binding.eval("__method__")
+      ext_binding.receiver.method(method_name).parameters.map do |_, name|
+        [name, ext_binding.local_variable_get(name)]
+      end.to_h
     end
-    def get_with_args(path,*args)
-      require_settings %w|apikey|
-      arg_path = *args.compact.map { |t| t.to_s}
-      get(path, File.join(arg_path))
+
+    # La requete se construit selon le nom et la valeur des arguments passés à la fonction
+    def construct_request_with_arguments(base_request, ext_binding)
+      request = base_request.concat("?")
+      get_method_arguments(ext_binding).each do |arg_name, arg_value|
+        request.concat(arg_name.to_s).concat("=").concat(arg_value.to_s).concat("&")
+      end
+      
+      # Suppression du dernier "&"
+      request[0..-2]
     end
-    private :get_with_args, :get, :post, :parse, :clean_query, :require, :connection
+
+    private :require, :parse ,:get, :construct_request_with_arguments
   end
 end
