@@ -1,5 +1,8 @@
 # Aircall
 
+[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/HazAT/badge/blob/master/LICENSE)
+[![Gem](https://badge.fury.io/rb/aircall.svg)](https://rubygems.org/gems/aircall)
+
 A Ruby gem for [Aircall](https://developer.aircall.io/api-references/).
 Only some methods are presents for the moment.
 
@@ -42,6 +45,10 @@ Or like this:
 #### [Contacts](./doc/contacts.md)
 #### [Users](./doc/users.md)
 
+### Examples
+`aircall.contacts.get_by_email("jeromearsene@gmail.com")`
+
+`aircall.contacts.get_by_phone_number("+33612345678", per_page:1, page:3, order: "desc", order_by: "updated_at")`
 
 ## Tests
 
