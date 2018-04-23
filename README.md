@@ -46,7 +46,7 @@ Or like this:
 #### [Users](./doc/users.md)
 
 ### Examples
-`aircall.contacts.get_by_email("jeromearsene@gmail.com")`
+`aircall.contacts.get_by_email("youremail@gmail.com")`
 
 `aircall.contacts.get_by_phone_number("+33612345678", per_page:1, page:3, order: "desc", order_by: "updated_at")`
 
