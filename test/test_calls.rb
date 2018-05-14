@@ -5,6 +5,10 @@ require 'default_tests'
 
 module TestAircall
   describe Aircall::Calls do
+    def self.call_all
+      @call_all ||= DefaultAircall::AIRCALL.calls.get_all()
+    end
+
     def self.call_by_id
       @call_by_id ||= DefaultAircall::AIRCALL.calls.get_by_id(ENV['TEST_DEFAULT_CALL_ID'])
     end
@@ -18,6 +22,7 @@ module TestAircall
     end
 
     DefaultTest::Run.(
+        'call_all',
         'call_by_id',
         'call_by_user_id',
         'call_by_phone_number')

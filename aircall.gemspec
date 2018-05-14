@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Aircall::VERSION
   spec.licenses = ['MIT']
   spec.authors       = ["Ilek", "Jerome"]
-  spec.email         = ["jerome@ilek.fr", "jeromearsene@gmail.com"]
+  spec.email         = ["julien@ilek.fr", "jerome@ilek.fr", "jeromearsene@gmail.com"]
 
   spec.summary       = "Ruby Gem for Aircall"
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
