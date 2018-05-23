@@ -9,3 +9,4 @@
 bin/temporary_tests
 .env
 *.gem
+.DS_Store

@@ -45,7 +45,9 @@ module Aircall
     def construct_request_with_arguments(base_request, ext_binding)
       request = base_request.concat("?")
       get_method_arguments(ext_binding).each do |arg_name, arg_value|
-        request.concat(arg_name.to_s).concat("=").concat(arg_value.to_s).concat("&")
+        if !arg_value.nil?
+          request.concat(arg_name.to_s).concat("=").concat(arg_value.to_s).concat("&")
+        end
       end
       
       # Suppression du dernier "&"

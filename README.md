@@ -53,6 +53,8 @@ Or like this:
 
 `aircall.contacts.get_by_phone_number("+33612345678", per_page:1, page:3, order: "desc", order_by: "updated_at")`
 
+`aircall.calls.get_all(per_page: 2, from: 1495542462, to: 1514035662)`
+
 ---
 
 ## Development
