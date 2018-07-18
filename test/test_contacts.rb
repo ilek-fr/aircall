@@ -5,6 +5,10 @@ require 'default_tests'
 
 module TestAircall
   describe Aircall::Contacts do
+    def self.contact_all
+      @contact_all ||= DefaultAircall::AIRCALL.contacts.get_all()
+    end
+
     def self.contact_by_id
       @contact_by_id ||= DefaultAircall::AIRCALL.contacts.get_by_id(ENV['TEST_DEFAULT_CONTACT_ID'])
     end
@@ -18,6 +22,7 @@ module TestAircall
     end
 
     DefaultTest::Run.(
+        'contact_all',
         'contact_by_id',
         'contact_by_phone_number',
         'contact_by_email')

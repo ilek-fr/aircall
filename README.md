@@ -63,7 +63,7 @@ Or like this:
 `gem build aircall.gemspec`
 
 ### Local installation
-`gem install ./aircall[version].gem`
+`gem install ./aircall-[version].gem`
 
 
 ### Tests
