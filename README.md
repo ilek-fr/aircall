@@ -30,16 +30,19 @@ Or install it yourself as:
 
 Create new Aircall connection like this:
 
-    require 'aircall'
-    aircall = Aircall.new({id: [AIRCALL_ID], token: [AIRCALL_TOKEN]})
+```ruby
+require 'aircall'
+aircall = Aircall.new({id: [AIRCALL_ID], token: [AIRCALL_TOKEN]})
+```
 
 Or like this:
-    
-    require 'aircall'
-    aircall = Aircall.new
-    aircall.id = [AIRCALL_ID]
-    aircall.token = [AIRCALL_TOKEN]
 
+```ruby    
+require 'aircall'
+aircall = Aircall.new
+aircall.id = [AIRCALL_ID]
+aircall.token = [AIRCALL_TOKEN]
+```
 
 ### Methods
 
@@ -49,21 +52,31 @@ Or like this:
 #### [Users](./doc/users.md)
 
 ### Examples
-`aircall.contacts.get_by_email("youremail@gmail.com")`
 
-`aircall.contacts.get_by_phone_number("+33612345678", per_page:1, page:3, order: "desc", order_by: "updated_at")`
+```ruby
+aircall.contacts.get_by_email("youremail@gmail.com")
+```
 
-`aircall.calls.get_all(per_page: 2, from: 1495542462, to: 1514035662)`
+```ruby
+aircall.contacts.get_by_phone_number("+33612345678", per_page:1, page:3, order: "desc", order_by: "updated_at")
+```
+
+```ruby
+aircall.calls.get_all(per_page: 2, from: 1495542462, to: 1514035662)
+```
+
 
 ---
 
 ## Development
 
 ### Build
-`gem build aircall.gemspec`
+
+	gem build aircall.gemspec
 
 ### Local installation
-`gem install ./aircall-[version].gem`
+
+	gem install ./aircall-[version].gem
 
 
 ### Tests
@@ -78,4 +91,4 @@ Run test with `rake test`.
 
  Deployment from Github
  
-`bundle exec rake release`
+	bundle exec rake release
